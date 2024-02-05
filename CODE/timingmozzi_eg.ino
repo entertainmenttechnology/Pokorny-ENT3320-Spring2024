@@ -2,7 +2,7 @@
 
 int counter = 0; //counter variable
 int interval = 1000; //interval for audioticks
-int reset = 0;//reset once limit is reach
+int resetLimit = 15;//reset once limit is reach
 
 void start() {
 
@@ -19,11 +19,12 @@ void loop() {
     counter++;
 
     //conce the limit is reached then it will reset when its incrementing
-    if(currentTick & audioTicks > 15) {
-        reset;
+    if(currentTick > resetLimit) {
+        count = 0;
       }
   }
   //print the counter value
-  Serial.println(counter); 
+  Serial.println(counter);
 
+  eventDelay(10); 
 }
