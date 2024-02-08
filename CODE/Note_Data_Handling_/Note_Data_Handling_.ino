@@ -22,7 +22,7 @@ void setup(){
 }
 
 void updateControl(){
-  float freq = mtof(midiNote);
+  int freq = mtof(midiNote);
   aSin.setFreq(freq);
 
   Serial.println(freq);
