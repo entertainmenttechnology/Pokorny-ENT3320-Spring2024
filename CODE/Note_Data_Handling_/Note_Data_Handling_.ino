@@ -1,0 +1,32 @@
+#include <MozziGuts.h>
+#include <Oscil.h>
+#include <tables/sin2048_int8.h>
+#include <mozzi_midi.h>
+#include <ADSR.h>
+#include <tables/sin2048_int8.h> 
+
+#define CONTROL_RATE 128
+Oscil <2048, AUDIO_RATE> aSin(SIN2048_DATA);
+
+void setup(){
+
+  aSin.setFreq(440);
+	startMozzi(CONTROL_RATE);
+
+  int mtof(int midi_note);
+  int mtof(uint8_t midi_note);
+}
+
+void updateControl(){
+
+}
+
+int updateAudio(){
+	return aSin.next();
+
+}
+
+void loop(){
+	audioHook();
+}
+
