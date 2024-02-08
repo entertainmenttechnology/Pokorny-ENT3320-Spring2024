@@ -5,20 +5,27 @@
 #include <ADSR.h>
 #include <tables/sin2048_int8.h> 
 
+
 #define CONTROL_RATE 128
 Oscil <2048, AUDIO_RATE> aSin(SIN2048_DATA);
 
-void setup(){
+float midiSequence[] = {69,60,28,52,90};
+float midiNote = midiSequence[4];
 
+
+void setup(){
+  
   aSin.setFreq(440);
 	startMozzi(CONTROL_RATE);
 
-  int mtof(int midi_note);
-  int mtof(uint8_t midi_note);
+  Serial.begin(115200);
 }
 
 void updateControl(){
+  float freq = mtof(midiNote);
+  aSin.setFreq(freq);
 
+  Serial.println(freq);
 }
 
 int updateAudio(){
