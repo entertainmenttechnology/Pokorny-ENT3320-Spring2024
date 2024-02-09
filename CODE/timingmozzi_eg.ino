@@ -4,7 +4,7 @@
 
 
 int counter = 0; //counter variable
-int interval = 64; //interval for audioticks. a sixteenth note is 1/4 a single beat. 256/4 = 64.
+int interval = 64; //interval for audioticks. a sixteenth note is 1/4 a single beat. 256/4 = 64. 1024/16 = 64.
 int resetLimit = 15;//reset once limit is reach
 
 
@@ -23,12 +23,12 @@ void loop() {
 
 
  //check if the ticks are incrementing pass zero
- if(currentTick && audioTicks == 0) {
+ if(currentTick % interval == 0) {
    counter++;
 
 
    //conce the limit is reached then it will reset when its incrementing
-   if(currentTick > resetLimit) {
+   if(coutner > resetLimit) {
        counter = 0;
      }
  }
