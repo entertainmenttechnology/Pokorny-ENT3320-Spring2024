@@ -1,29 +1,30 @@
-const int numOfSensors = 1; // Number of piezo sensors we are using. Can be modify
-int pins[numOfSensors] = {A0}; // Input the pin values on your arduino. this can be modify
-int limit = 600; // Limit value to trigger the boolean
-int sensorVal[numOfSensors] = {0};
-
-
-bool trigger[numOfSensors] = {false}; // Status of the sensors inside an array
-
+//More pins can be added depending on how many devices are used for the project
+int pin0 = A0; // Pin for the first piezo sensor
+int pin1 = A1; // Pin for the second piezo sensor
+int limit = 500; // Threshold value to trigger the boolean statement
 
 void setup() {
- Serial.begin(115200);
+  Serial.begin(115200);
 }
 
 void loop() {
- // Checking the num of sensors while checking the status and limit
- for (int i = 0; i < numOfSensors; i++) {
-    sensorVal[i] = analogRead(pins[i]); // New value to read each pin
+  // Reads values of the first sensor
+  int sensorVal0 = analogRead(pin0);
+  // Read values of the second sensor
+  int sensorVal1 = analogRead(pin1);
 
-    trigger[i] = sensorVal > limit;//device is trigger once the sensor values are greater than the limit
+  // Checking if the devuce exceed the threshold for each sensor
+  bool triggered0 = sensorVal0 > limit;
+  bool triggered1 = sensorVal1 > limit;
 
-    //Statement to print pin and trigger status
-    Serial.print("Sensor: ");
-    Serial.print(numOfSensors);
-    
-    // Print sensor value
-    Serial.print(", Value: ");
-    Serial.print(sensorVal[i]);
-  }
+  // Print sensor values and trigger status
+  Serial.print("Sensor 0 value: ");
+  Serial.print(sensorVal0);
+  Serial.print(", Triggered: ");
+  Serial.println(triggered0);
+
+  Serial.print("Sensor 1 value: ");
+  Serial.print(sensorVal1);
+  Serial.print(", Triggered: ");
+  Serial.println(triggered1);
 }
