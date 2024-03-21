@@ -4,6 +4,7 @@
 - Envelope (Attack basically instant while release is almost midpoint so when piezo is triggered sound comes out immediately and lingers for maybe 1 second to 1.5
 
 
+
 Synthesis Type: FM through the usage of a low frequency oscillator
 
 Signal Flow: LFO ----> OSC ----> ENV ----> OUT
@@ -17,3 +18,9 @@ Signal Flow: LFO ----> OSC ----> ENV ----> OUT
 -Between OSC AND ENV through testing on VCV Rack a low attack and mid level release with a mid level decay seems to work best to simulate that of a beep or nice musical note. (Again check the vcv rack file if needed)
 
 -If capable on mozzi the modulated sound would then be output each time the peg is hit
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Array of potential frequencies to randomly play when peg is hit 
+
+[65, 82, 97, 123, 130, 164, 196, 246, 261, 329, 392, 493, 523, 659, 783, 987, 1046, 1318, 1568, 1975]
