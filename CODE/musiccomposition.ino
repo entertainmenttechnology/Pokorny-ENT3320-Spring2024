@@ -10,9 +10,16 @@
 // Define Oscillator class
 class Oscillator {
   Oscil<SAW1024_NUM_CELLS, AUDIO_RATE> sawtooth; // Example oscillator type, you can change as needed
+  //constructor to initialize
+  public:
+  Oscillator(float freq) {
+    sawtooth.setFreq(freq);
+  }
+
   void setFrequency(float freq) {
     sawtooth.setFreq(freq);
   }
+  //output the Oscillator class
   float next() {
     return sawtooth.next();
   }
@@ -43,30 +50,59 @@ class LFO {
 
 // Define Envelope class
 class Envelope {
-  ADSR adsr;
+  // the parameters for the envelope
+  float attackTime; 
+  float decayTime;  
+  float sustainPoint;
+  float releaseTime; 
 
+  enum State { IDLE, ATTACK, DECAY, SUSTAIN, RELEASE }; // Enum to define envelope states
+  float currentPoint;
+  float targetPoint;
+  float increment; // value for the attack to be release
+  State currentState; // state of the envelope
+
+  //constructor of envelope
+  public:
+  Envelope() {}
+
+
+  //trigger the envvelope
   void trigger() {
-    adsr.noteOn();
+    currentPoint = 0;
+    targetPoint = 1;
+    currentState = ATTACK;
+    increment = 1 / (attackTime * CONTROL_RATE);
   }
-  void update() {
-    adsr.update();
+  //releasing the envelope 
+  void release() {
+
+  }
+
+
+/*upadte the state with a each state attack, decay, & release
+the curremt state in decay & release cases will euqal to state deayTime/releaseTime
+while attack case will be substaint time and point when incrementing 
+*/
+  void upddate() {
+  
   }
 };
-
-void setup() {
-  startMozzi(CONTROL_RATE);
-}
 
 void updateControl() {
   // Put changing controls (i.e., sensor updates) here
   float modLFO = 200;
   lfo.updateFrequency(modLFO)
+
+  //instance of the Oscillator class being called
+  float oscOutput = osc.next();
+  Oscillator osc1(baseFrequency);
+
 }
 
 AudioOutput_t updateAudio() {
   // our objects
   Oscillator osc1;
-  Oscillator osc2;
   LFO lfo;
   Envelope env;
 
@@ -94,9 +130,12 @@ AudioOutput_t updateAudio() {
   // Update envelope state
   env.update();
 
-  // Generate audio output
-  return MonoOutput::from16Bit(osc1.next() * osc2.next());
+  // Generate LFO audio output
+  return MonoOutput::from16Bit(osc1.next());
 }
+  // Generate Oscillator audio output
+  float osc1Audio = osc1.next()
+  return MonoOutput::from16bit(osc1Audio)
 
 void loop() {
   audioHook(); // fill the audio buffer, this is required
