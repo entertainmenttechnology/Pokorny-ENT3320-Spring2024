@@ -25,14 +25,14 @@ class Oscillator {
   }
 };
 
-// Define LFO class
+// LFO class
 class LFO {
-  Oscil<SIN1024_NUM_CELLS, CONTROL_RATE> sine; // Example LFO type, you can change as needed
+  Oscil<SAW1024_NUM_CELLS, CONTROL_RATE> sine; // Example LFO type, you can change as needed
   
   float baseFrequency;
-  float modAmount; //the amount we can modify our starting LFO frequency 
+  float modAmt; //the amount we can modify our starting LFO frequency 
   //constructors that will update our LFO
-  LFO(baseFreq, modify) : baseFrequency(baseFreq), modAmount(modify) {
+  LFO(baseFreq, modify) : baseFrequency(baseFreq), modAmt(modify) {
     sine.setFreq(baseFreq);
   }
 
@@ -48,24 +48,23 @@ class LFO {
   }
 };
 
-// Define Envelope class
+// Envelope class
 class Envelope {
   // the parameters for the envelope
   float attackTime; 
   float decayTime;  
-  float sustainPoint;
-  float releaseTime; 
+  float sustainPoint;//after the decay this will control what the volume levels  will be
+  float releaseState = 1.5; //the time to release the sound
 
   enum State { IDLE, ATTACK, DECAY, SUSTAIN, RELEASE }; // Enum to define envelope states
   float currentPoint;
   float targetPoint;
-  float increment; // value for the attack to be release
+  float counter; // value for the attack to be release
   State currentState; // state of the envelope
 
   //constructor of envelope
   public:
   Envelope() {}
-
 
   //trigger the envvelope
   void trigger() {
@@ -76,35 +75,69 @@ class Envelope {
   }
   //releasing the envelope 
   void release() {
-
+    currentState = RELEASE;
+    targetPoint = 0;
+    counter = 1 / (releaseState * CONTROL_RATE);
   }
-
 
 /*upadte the state with a each state attack, decay, & release
 the curremt state in decay & release cases will euqal to state deayTime/releaseTime
-while attack case will be substaint time and point when incrementing 
+while attack case will be substaint time and point when incrementing. update class. 
 */
-  void upddate() {
-  
+  void update() {
+    switch (currentState) {
+      case ATTACK:
+        currentPoint += counter;
+        if (currentPoint >= targetPoint) {
+          currentState = DECAY;
+          targetLevel = sustainPoint;
+          counter = (sustainPoint - currentPoint) / (decayTime * CONTROL_RATE);
+        }
+        break;
+
+      case DECAY:
+        currentPoint += counter;
+        if (currentPoint <= targetPoint) {
+          currentState = SUSTAIN;
+        }
+        break;
+
+      case RELEASE:
+        currentPoint -= counter;
+        if (currentPoint <= targetPoint) {
+          currentState = IDLE;
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  float getCurrentPoint() {
+    return currentPoint;
   }
 };
 
+// place sensor controls here to be updated
 void updateControl() {
-  // Put changing controls (i.e., sensor updates) here
   float modLFO = 200;
   lfo.updateFrequency(modLFO)
 
-  //instance of the Oscillator class being called
+  //the Oscillator class being called
   float oscOutput = osc.next();
   Oscillator osc1(baseFrequency);
 
+  if(/* piezo trigger logic */) {
+    return env.trigger();
+  }
 }
 
 AudioOutput_t updateAudio() {
   // our objects
-  Oscillator osc1;
-  LFO lfo;
-  Envelope env;
+  Oscillator osc1(baseFrequency);
+  LFO lfo(baseFrequency, modAmt);
+  Envelope env(baseFrequency);
 
     /* For mono output, the return value of this function is really just a signed integer
   However, for best portability of your sketch to different boards and configurations,
@@ -125,17 +158,21 @@ AudioOutput_t updateAudio() {
 
   // Update oscillator frequencies based on LFO
   osc1.setFrequency();
-  osc2.setFrequency(baseFrequency + lfo.nect() * modAmount);
-
-  // Update envelope state
-  env.update();
+  osc2.setFrequency(baseFrequency + lfo.nect() * modAmt);
 
   // Generate LFO audio output
   return MonoOutput::from16Bit(osc1.next());
-}
+
   // Generate Oscillator audio output
   float osc1Audio = osc1.next()
   return MonoOutput::from16bit(osc1Audio)
+
+  // updates envelope state
+  env.update();
+
+  //receive the current point of where the envelope is at
+  float enevlopePoint = env.getCurrentPoint();
+}
 
 void loop() {
   audioHook(); // fill the audio buffer, this is required
