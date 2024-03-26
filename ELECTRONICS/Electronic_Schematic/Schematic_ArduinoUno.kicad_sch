@@ -9,6 +9,70 @@
   )
 
   (lib_symbols
+    (symbol "Connector_Audio:AudioJack2" (in_bom yes) (on_board yes)
+      (property "Reference" "J" (at 0 8.89 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Value" "AudioJack2" (at 0 6.35 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "~" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "audio jack receptacle mono phone headphone TS connector" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Audio Jack, 2 Poles (Mono / TS)" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_fp_filters" "Jack*" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "AudioJack2_0_1"
+        (rectangle (start -3.81 0) (end -2.54 -2.54)
+          (stroke (width 0.254) (type default))
+          (fill (type outline))
+        )
+        (rectangle (start -2.54 3.81) (end 2.54 -2.54)
+          (stroke (width 0.254) (type default))
+          (fill (type background))
+        )
+        (polyline
+          (pts
+            (xy 0 0)
+            (xy 0.635 -0.635)
+            (xy 1.27 0)
+            (xy 2.54 0)
+          )
+          (stroke (width 0.254) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 2.54 2.54)
+            (xy -0.635 2.54)
+            (xy -0.635 0)
+            (xy -1.27 -0.635)
+            (xy -1.905 0)
+          )
+          (stroke (width 0.254) (type default))
+          (fill (type none))
+        )
+      )
+      (symbol "AudioJack2_1_1"
+        (pin passive line (at 5.08 2.54 180) (length 2.54)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "S" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 5.08 0 180) (length 2.54)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "T" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
     (symbol "Device:R_US" (pin_numbers hide) (pin_names (offset 0)) (in_bom yes) (on_board yes)
       (property "Reference" "R" (at 2.54 0 90)
         (effects (font (size 1.27 1.27)))
@@ -462,9 +526,17 @@
     (uuid 8503d7bc-8876-499d-a46d-f46d12d1fe1c)
   )
 
+  (wire (pts (xy 215.9 99.06) (xy 226.06 99.06))
+    (stroke (width 0) (type default))
+    (uuid 02854766-8af0-4b6f-aebc-363bd565cc6c)
+  )
   (wire (pts (xy 140.97 154.94) (xy 140.97 162.56))
     (stroke (width 0) (type default))
     (uuid 0504d352-f9ca-4fc8-a711-bc8cbc0b3455)
+  )
+  (wire (pts (xy 214.63 58.42) (xy 214.63 52.07))
+    (stroke (width 0) (type default))
+    (uuid 0673d405-53e8-47e2-a630-451dfc620ee5)
   )
   (wire (pts (xy 114.3 49.53) (xy 114.3 100.33))
     (stroke (width 0) (type default))
@@ -494,9 +566,17 @@
     (stroke (width 0) (type default))
     (uuid 2ea04ef8-8e00-4dc3-b17e-0ebc7864735c)
   )
+  (wire (pts (xy 214.63 77.47) (xy 226.06 77.47))
+    (stroke (width 0) (type default))
+    (uuid 2f039838-4318-4840-875c-28f54e279b84)
+  )
   (wire (pts (xy 142.24 49.53) (xy 114.3 49.53))
     (stroke (width 0) (type default))
     (uuid 35fb0091-c72c-41b5-abc6-ee281237127c)
+  )
+  (wire (pts (xy 217.17 149.86) (xy 226.06 149.86))
+    (stroke (width 0) (type default))
+    (uuid 366e9a4b-fbe1-44c5-8bd0-240fdf21611d)
   )
   (wire (pts (xy 158.75 20.32) (xy 142.24 20.32))
     (stroke (width 0) (type default))
@@ -506,9 +586,9 @@
     (stroke (width 0) (type default))
     (uuid 40bbc0a1-6266-48a9-a4d7-d62e6d84d85d)
   )
-  (wire (pts (xy 214.63 121.92) (xy 224.79 121.92))
+  (wire (pts (xy 214.63 22.86) (xy 226.06 22.86))
     (stroke (width 0) (type default))
-    (uuid 45b5b7bf-217e-4404-8f63-7ea5f1aa5aa5)
+    (uuid 44e25118-5c63-4a74-9a28-004d9fb3df39)
   )
   (wire (pts (xy 115.57 110.49) (xy 101.6 110.49))
     (stroke (width 0) (type default))
@@ -518,13 +598,13 @@
     (stroke (width 0) (type default))
     (uuid 47b86723-c422-4e4b-b1f5-a8aa26c4c6c3)
   )
-  (wire (pts (xy 213.36 77.47) (xy 226.06 77.47))
-    (stroke (width 0) (type default))
-    (uuid 4a4f547c-2df2-49c0-8ae5-c38802458369)
-  )
   (wire (pts (xy 101.6 100.33) (xy 114.3 100.33))
     (stroke (width 0) (type default))
     (uuid 4c7fe933-234f-4374-8284-23851100e0bd)
+  )
+  (wire (pts (xy 68.58 97.79) (xy 68.58 115.57))
+    (stroke (width 0) (type default))
+    (uuid 4e7b809d-8a89-4e20-a2af-73a029be2f4f)
   )
   (wire (pts (xy 189.23 49.53) (xy 166.37 49.53))
     (stroke (width 0) (type default))
@@ -546,9 +626,17 @@
     (stroke (width 0) (type default))
     (uuid 6542cbe6-8ced-4a8b-b392-0cfbae109c7e)
   )
+  (wire (pts (xy 44.45 100.33) (xy 44.45 106.68))
+    (stroke (width 0) (type default))
+    (uuid 6a02c3ef-f47e-46dd-8469-8b4bd801e12a)
+  )
   (wire (pts (xy 162.56 147.32) (xy 140.97 147.32))
     (stroke (width 0) (type default))
     (uuid 6bd41ef5-cc3d-47b3-81c6-95555c99b881)
+  )
+  (wire (pts (xy 215.9 127) (xy 215.9 121.92))
+    (stroke (width 0) (type default))
+    (uuid 6ee18a1a-d3e1-4bf3-8015-dae26498c20c)
   )
   (wire (pts (xy 101.6 105.41) (xy 116.84 105.41))
     (stroke (width 0) (type default))
@@ -565,6 +653,10 @@
   (wire (pts (xy 187.96 20.32) (xy 166.37 20.32))
     (stroke (width 0) (type default))
     (uuid 78ebfa19-ed0e-44ed-b4d3-14dfdd65343f)
+  )
+  (wire (pts (xy 39.37 100.33) (xy 44.45 100.33))
+    (stroke (width 0) (type default))
+    (uuid 7a0779c3-69aa-4fc7-8df7-6e537be96489)
   )
   (wire (pts (xy 115.57 74.93) (xy 115.57 102.87))
     (stroke (width 0) (type default))
@@ -594,13 +686,13 @@
     (stroke (width 0) (type default))
     (uuid 9048548a-db39-4b35-b0bf-6a080cb05a23)
   )
+  (wire (pts (xy 39.37 97.79) (xy 68.58 97.79))
+    (stroke (width 0) (type default))
+    (uuid 91753cc4-d41a-4891-afbe-2b60f52330df)
+  )
   (wire (pts (xy 116.84 119.38) (xy 140.97 119.38))
     (stroke (width 0) (type default))
     (uuid 92b8b430-c6ad-4a32-b2b9-356bf408cbb2)
-  )
-  (wire (pts (xy 214.63 99.06) (xy 226.06 99.06))
-    (stroke (width 0) (type default))
-    (uuid 9988858a-b256-4d03-a49e-999d5a4224bb)
   )
   (wire (pts (xy 158.75 74.93) (xy 142.24 74.93))
     (stroke (width 0) (type default))
@@ -610,13 +702,17 @@
     (stroke (width 0) (type default))
     (uuid b110b280-83a5-4245-b33b-6162396cbd81)
   )
+  (wire (pts (xy 217.17 154.94) (xy 217.17 149.86))
+    (stroke (width 0) (type default))
+    (uuid b1559d8c-7ce6-4190-8a70-98c39bb89d71)
+  )
   (wire (pts (xy 226.06 74.93) (xy 196.85 74.93))
     (stroke (width 0) (type default))
     (uuid b1affa5c-d3f1-47ef-8d98-b55f5c4422b0)
   )
-  (wire (pts (xy 213.36 52.07) (xy 226.06 52.07))
+  (wire (pts (xy 215.9 104.14) (xy 215.9 99.06))
     (stroke (width 0) (type default))
-    (uuid b9ccf60c-ef32-48f1-9803-341748d9d2c7)
+    (uuid bfe025e6-eb82-4f9b-8f24-8a347d02bd24)
   )
   (wire (pts (xy 142.24 57.15) (xy 142.24 59.69))
     (stroke (width 0) (type default))
@@ -626,9 +722,17 @@
     (stroke (width 0) (type default))
     (uuid cadf8297-aa2b-41f3-8a33-0de0648e6c99)
   )
-  (wire (pts (xy 215.9 149.86) (xy 226.06 149.86))
+  (wire (pts (xy 214.63 83.82) (xy 214.63 77.47))
     (stroke (width 0) (type default))
-    (uuid d2699899-8da6-453c-aa32-a3c0c39b9c78)
+    (uuid cbf55614-d7bc-4e72-be7e-89ace401e1ee)
+  )
+  (wire (pts (xy 68.58 115.57) (xy 76.2 115.57))
+    (stroke (width 0) (type default))
+    (uuid d5943161-4f05-4486-92a5-e57b389b37bc)
+  )
+  (wire (pts (xy 214.63 52.07) (xy 226.06 52.07))
+    (stroke (width 0) (type default))
+    (uuid d9ff1100-8469-4345-a903-30725e6ccd4c)
   )
   (wire (pts (xy 116.84 96.52) (xy 116.84 105.41))
     (stroke (width 0) (type default))
@@ -642,9 +746,13 @@
     (stroke (width 0) (type default))
     (uuid ea57074c-65c3-44d9-9305-d232eedfcc06)
   )
-  (wire (pts (xy 213.36 22.86) (xy 226.06 22.86))
+  (wire (pts (xy 215.9 121.92) (xy 224.79 121.92))
     (stroke (width 0) (type default))
-    (uuid ebd9f8ed-937e-49eb-8577-312456fd8e35)
+    (uuid ef0a1050-b04f-4f03-b661-dcf1564f8edc)
+  )
+  (wire (pts (xy 214.63 29.21) (xy 214.63 22.86))
+    (stroke (width 0) (type default))
+    (uuid f55191ff-f603-417c-9af2-dabd693ad070)
   )
   (wire (pts (xy 142.24 49.53) (xy 158.75 49.53))
     (stroke (width 0) (type default))
@@ -673,7 +781,7 @@
     (pin "2" (uuid 839098d2-f831-44a8-9573-3e8dfdcf1f31))
     (pin "1" (uuid 56327195-cc4a-48e4-8b5d-d2ee70d78fe9))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R10") (unit 1)
         )
@@ -699,7 +807,7 @@
     (pin "2" (uuid 9012309c-6191-4a00-8528-9bf9049c234b))
     (pin "1" (uuid a9cee4f8-54ea-41c2-b154-d29ff2c6a8f8))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R7") (unit 1)
         )
@@ -725,9 +833,34 @@
     (pin "2" (uuid a99e257c-2b55-44a4-aa2e-7e87801a4533))
     (pin "1" (uuid ad1348af-e668-43bb-97df-8268b17a22e1))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R12") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 44.45 106.68 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 3f38cea2-d8f0-41ab-89bc-f9373f6fd3f6)
+    (property "Reference" "#PWR013" (at 44.45 113.03 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 44.45 111.76 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 44.45 106.68 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 44.45 106.68 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 525bc3c3-8b93-49f9-a2fb-16f3acb393f2))
+    (instances
+      (project "Schematic_ArduinoUno"
+        (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
+          (reference "#PWR013") (unit 1)
         )
       )
     )
@@ -751,7 +884,7 @@
     (pin "2" (uuid 8501704f-d08f-4c57-ae63-0e6ca9824c86))
     (pin "1" (uuid f83a914d-416a-4997-b930-73770eee392e))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R3") (unit 1)
         )
@@ -783,7 +916,7 @@
     (pin "1" (uuid 0f31f27b-0e3c-41c7-b32b-30e439f03b03))
     (pin "2" (uuid d8131eb7-3f15-46d4-9ec8-39281300cb1e))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo_D3") (unit 1)
         )
@@ -809,7 +942,7 @@
     (pin "1" (uuid a5c5ba79-5c05-4c21-b465-fe7040ba98e5))
     (pin "2" (uuid 28643c13-3521-4fd1-8402-d7e989ab74ce))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R2") (unit 1)
         )
@@ -835,7 +968,7 @@
     (pin "2" (uuid a47e7e38-3640-455f-8db1-a9b142d03e31))
     (pin "1" (uuid eae05d88-f06d-4d51-b49e-f3f5d2c6ff8b))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R5") (unit 1)
         )
@@ -843,24 +976,24 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 213.36 77.47 270) (unit 1)
+  (symbol (lib_id "power:GND") (at 214.63 83.82 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4e6c9113-9cf9-4d8a-98a5-35b6c7b99c1d)
-    (property "Reference" "#PWR05" (at 207.01 77.47 0)
+    (property "Reference" "#PWR05" (at 214.63 90.17 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (at 209.55 77.47 90)
-      (effects (font (size 1.27 1.27)) (justify right))
+    (property "Value" "GND" (at 217.17 85.09 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 213.36 77.47 0)
+    (property "Footprint" "" (at 214.63 83.82 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 213.36 77.47 0)
+    (property "Datasheet" "" (at 214.63 83.82 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 67658a7a-763b-4631-87b8-5493d848308d))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR05") (unit 1)
         )
@@ -916,7 +1049,7 @@
     (pin "2" (uuid 48f9c3c1-6275-4e73-9f8d-1c381090fd1c))
     (pin "21" (uuid ff9c065c-03f6-4e84-938d-f2e15d65c074))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "A1") (unit 1)
         )
@@ -924,24 +1057,24 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 215.9 149.86 270) (unit 1)
+  (symbol (lib_id "power:GND") (at 217.17 154.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 54c0654e-02b4-4116-b8c2-5b4e46095648)
-    (property "Reference" "#PWR011" (at 209.55 149.86 0)
+    (property "Reference" "#PWR011" (at 217.17 161.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (at 212.09 149.86 90)
-      (effects (font (size 1.27 1.27)) (justify right))
+    (property "Value" "GND" (at 219.71 156.21 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 215.9 149.86 0)
+    (property "Footprint" "" (at 217.17 154.94 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 215.9 149.86 0)
+    (property "Datasheet" "" (at 217.17 154.94 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 8a29799f-a899-4211-9d5a-05b03035cd41))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR011") (unit 1)
         )
@@ -967,7 +1100,7 @@
     (pin "2" (uuid 38b61496-09eb-46bd-8e31-d0fa4deaa813))
     (pin "1" (uuid c600764c-2e61-46a8-bcdc-1d244450f8df))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo4") (unit 1)
         )
@@ -993,7 +1126,7 @@
     (pin "2" (uuid 6473a1cc-5196-437e-9c7a-7590ad02f177))
     (pin "1" (uuid 479c865f-b853-4e5f-b8e7-96e33aab6e84))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R9") (unit 1)
         )
@@ -1025,7 +1158,7 @@
     (pin "2" (uuid 9f99861e-7a1d-408f-a79a-64e23dfe645e))
     (pin "1" (uuid 1f47f026-3cd6-4f06-8ccf-ed84b83a4124))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo_D5") (unit 1)
         )
@@ -1033,24 +1166,24 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 213.36 22.86 270) (unit 1)
+  (symbol (lib_id "power:GND") (at 214.63 29.21 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5a03cbc8-c113-495c-962a-e275a9c10b5a)
-    (property "Reference" "#PWR02" (at 207.01 22.86 0)
+    (property "Reference" "#PWR02" (at 214.63 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (at 209.55 22.86 90)
-      (effects (font (size 1.27 1.27)) (justify right))
+    (property "Value" "GND" (at 217.17 30.48 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 213.36 22.86 0)
+    (property "Footprint" "" (at 214.63 29.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 213.36 22.86 0)
+    (property "Datasheet" "" (at 214.63 29.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid b50f2c9a-bdda-4c9a-86ce-83613e5d31f0))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR02") (unit 1)
         )
@@ -1082,7 +1215,7 @@
     (pin "2" (uuid b82277b8-c508-4888-ae73-9c4f5c8c4eeb))
     (pin "1" (uuid 2815839a-2922-4e23-a7e8-ec759896d1d5))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo_D4") (unit 1)
         )
@@ -1108,7 +1241,7 @@
     (pin "2" (uuid e4b20c7d-746a-4835-9319-dae984b929ac))
     (pin "1" (uuid 4211fee0-836e-43a0-a4d4-d5b4790f980f))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo1") (unit 1)
         )
@@ -1134,7 +1267,7 @@
     (pin "1" (uuid c163c0c1-7ede-45c3-bf43-4170c17ef9ee))
     (pin "2" (uuid e2f4a69a-0fa0-4868-a0e0-345ff19569eb))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo5") (unit 1)
         )
@@ -1160,7 +1293,7 @@
     (pin "2" (uuid 2d17f4f6-a6ff-494c-8cee-aec157a728ab))
     (pin "1" (uuid 44c04bc0-cc0e-4a7a-8c54-afc51931b9e6))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo6") (unit 1)
         )
@@ -1185,7 +1318,7 @@
     )
     (pin "1" (uuid 8ab8ad4d-0d08-40c2-bea2-ab19280888d2))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR01") (unit 1)
         )
@@ -1193,24 +1326,24 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 214.63 99.06 270) (unit 1)
+  (symbol (lib_id "power:GND") (at 215.9 104.14 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7b0de400-7c49-44d9-aac1-f2ac20504b36)
-    (property "Reference" "#PWR08" (at 208.28 99.06 0)
+    (property "Reference" "#PWR08" (at 215.9 110.49 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (at 210.82 99.06 90)
-      (effects (font (size 1.27 1.27)) (justify right))
+    (property "Value" "GND" (at 218.44 105.41 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 214.63 99.06 0)
+    (property "Footprint" "" (at 215.9 104.14 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 214.63 99.06 0)
+    (property "Datasheet" "" (at 215.9 104.14 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid a4efa0aa-233d-488e-96f2-805e6278e0f0))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR08") (unit 1)
         )
@@ -1242,7 +1375,7 @@
     (pin "2" (uuid 2b9c36f0-7bb0-4895-b8ce-2ca8a72ae631))
     (pin "1" (uuid ff6693c1-8d46-4cf6-bce9-b53aead1a32a))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo_D6") (unit 1)
         )
@@ -1274,7 +1407,7 @@
     (pin "2" (uuid 9d198900-34fd-44a8-99e3-33f5dc32361d))
     (pin "1" (uuid 8e706839-aa0f-4fed-b22b-0af3457cebf9))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo_D1") (unit 1)
         )
@@ -1282,24 +1415,24 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 213.36 52.07 270) (unit 1)
+  (symbol (lib_id "power:GND") (at 214.63 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a65d8fa4-1894-4fd2-8e82-9818207577e5)
-    (property "Reference" "#PWR04" (at 207.01 52.07 0)
+    (property "Reference" "#PWR04" (at 214.63 64.77 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (at 209.55 52.07 90)
-      (effects (font (size 1.27 1.27)) (justify right))
+    (property "Value" "GND" (at 217.17 59.69 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 213.36 52.07 0)
+    (property "Footprint" "" (at 214.63 58.42 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 213.36 52.07 0)
+    (property "Datasheet" "" (at 214.63 58.42 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 14270107-b104-485f-bde4-e495b65a019a))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR04") (unit 1)
         )
@@ -1325,7 +1458,7 @@
     (pin "2" (uuid c2d92fd2-336c-4316-91ba-716ae1fee0ba))
     (pin "1" (uuid 33812a89-5777-484e-addc-9b20a5113bc6))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R8") (unit 1)
         )
@@ -1351,7 +1484,7 @@
     (pin "2" (uuid 7df685f3-85b1-41fc-bb3b-4c49a486a468))
     (pin "1" (uuid 63dee28f-2416-4b29-bd15-5231b26bb645))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R11") (unit 1)
         )
@@ -1377,7 +1510,7 @@
     (pin "2" (uuid 67042066-1209-44e9-84e4-8772a37eadbb))
     (pin "1" (uuid 5e770189-1526-4fa7-b45a-5aeedf6a7798))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo2") (unit 1)
         )
@@ -1402,7 +1535,7 @@
     )
     (pin "1" (uuid 65080886-004f-4f4c-b511-aeeecfb3e1d1))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR012") (unit 1)
         )
@@ -1428,7 +1561,7 @@
     (pin "1" (uuid 7174a49c-701c-4b8a-b1a0-3b689e6d34c8))
     (pin "2" (uuid 982ffbea-1965-4626-b3d8-30d5858a74eb))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo3") (unit 1)
         )
@@ -1453,7 +1586,7 @@
     )
     (pin "1" (uuid 8855619c-61f1-49ec-a95b-06687016a0b3))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR03") (unit 1)
         )
@@ -1485,7 +1618,7 @@
     (pin "1" (uuid d8e0aa8a-e2e3-4b4e-bb49-21be00ad90b5))
     (pin "2" (uuid 9791f254-7246-43db-bec4-6149eeaf3d1c))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "Piezo_D2") (unit 1)
         )
@@ -1493,24 +1626,24 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 214.63 121.92 270) (unit 1)
+  (symbol (lib_id "power:GND") (at 215.9 127 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid cac512fb-9bcf-4a52-9407-83a5dbfcefb9)
-    (property "Reference" "#PWR010" (at 208.28 121.92 0)
+    (property "Reference" "#PWR010" (at 215.9 133.35 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (at 210.82 121.92 90)
-      (effects (font (size 1.27 1.27)) (justify right))
+    (property "Value" "GND" (at 218.44 128.27 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 214.63 121.92 0)
+    (property "Footprint" "" (at 215.9 127 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 214.63 121.92 0)
+    (property "Datasheet" "" (at 215.9 127 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid e2584c29-54bc-4882-8d60-4391bcf15eb2))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR010") (unit 1)
         )
@@ -1536,7 +1669,7 @@
     (pin "2" (uuid c5363be9-944e-4d2c-8d7e-b8f6d66f943c))
     (pin "1" (uuid 5d86d239-8217-4c64-9981-2b144d998547))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R6") (unit 1)
         )
@@ -1561,7 +1694,7 @@
     )
     (pin "1" (uuid 08a6e40d-d153-4955-bdf7-90b1ddd36c8e))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR06") (unit 1)
         )
@@ -1586,7 +1719,7 @@
     )
     (pin "1" (uuid ccac8b33-4c49-423a-a48c-fb12b0783cd7))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR09") (unit 1)
         )
@@ -1611,7 +1744,7 @@
     )
     (pin "1" (uuid 9e899c65-6d94-4063-a21d-7bd8671e3e3b))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "#PWR07") (unit 1)
         )
@@ -1637,9 +1770,35 @@
     (pin "1" (uuid 09d98854-3c0e-409d-a82e-502d5bd405be))
     (pin "2" (uuid 81a268c3-4a25-4b64-8dca-33d95d3f7979))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R4") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Connector_Audio:AudioJack2") (at 34.29 97.79 0) (mirror x) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid f6a8906a-d2a5-40ad-b434-602fa8d93357)
+    (property "Reference" "J1" (at 33.655 106.68 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "AudioJack2" (at 33.655 104.14 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 34.29 97.79 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 34.29 97.79 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "T" (uuid 0ba28c63-1e0b-45a5-bfac-71616173ea81))
+    (pin "S" (uuid 2e618a58-5b2c-42b8-b959-c3f625f457ae))
+    (instances
+      (project "Schematic_ArduinoUno"
+        (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
+          (reference "J1") (unit 1)
         )
       )
     )
@@ -1663,7 +1822,7 @@
     (pin "1" (uuid 029c0e3b-3e45-438d-8cb1-988dcfc1002a))
     (pin "2" (uuid 1101e11d-d90a-4371-bfb0-cedcd4775a2f))
     (instances
-      (project "Schematic"
+      (project "Schematic_ArduinoUno"
         (path "/d0f701b7-388e-4aa8-a6f5-a32942129bb3"
           (reference "R1") (unit 1)
         )
