@@ -3,23 +3,23 @@
 #include <tables/sin2048_int8.h> 
 #include <RollingAverage.h>
 
-int NUM_PINS = 14;//number of pins we're using
-float piezovals[14];//values for each pin
-float piezoPins[14] = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13};//sensor pins
-float dataArray[NUM_PINS] = {};//our raw data array
+const int NUM_PINS = 14;//number of pins we're using
+int piezovals[14];//values for each pin
+int piezoPins[14] = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13};//sensor pins
+int dataArray[NUM_PINS] = {};//our raw data array
 RollingAverage<int, 32> kAverage;
 
 void setup() {
-  Serial.begin(11620);
+  Serial.begin(115200);
   startMozzi();
 }
 
 void updateControl() {
   //within our pins we will read and figure our the average in our cycle. store our data into the array
   for (int i = 0; i < NUM_PINS; i++) {
-    float piezoval = mozziAnalogRead(piezoPins[i]);
+    int piezoval = mozziAnalogRead(piezoPins[i]);
     piezovals[i] = piezoval;
-    float avg = kAverage.next(piezoval);
+    int avg = kAverage.next(piezoval);
     dataArray[i] = avg;
     //switch case implements the rolling average within each pin
     switch(i) {
