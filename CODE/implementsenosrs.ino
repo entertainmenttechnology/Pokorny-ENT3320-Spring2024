@@ -7,6 +7,8 @@ const int NUM_PINS = 14;//number of pins we're using
 int piezovals[14];//values for each pin
 int piezoPins[14] = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13};//sensor pins
 int dataArray[NUM_PINS] = {};//our raw data array
+int thresHoldON = 100; //can be changed
+bool triggerStatus[NUM_PINS] = {false};
 RollingAverage<int, 32> kAverage;
 
 void setup() {
@@ -21,6 +23,15 @@ void updateControl() {
     piezovals[i] = piezoval;
     int avg = kAverage.next(piezoval);
     dataArray[i] = avg;
+
+  //threshold logic where once the values are increasing and hitting a "peak" we ignore anything above it.
+  if (piezovals > thresHoldON) {
+    triggerStatus[i] = true;
+  }
+  else {
+    triggerStatus[i] = false;
+  }
+
     //switch case implements the rolling average within each pin
     switch(i) {
       case 0: 
@@ -97,9 +108,26 @@ void updateControl() {
         break;
     }
   }
+  
+   if (piezovals[1] > 50) {
+      Serial.print("3D: ");
+      Serial.println(piezovals[1]);
+      Serial.println(triggerStatus[1]);
+    }
+   if (piezovals[0] > 50) {
+    Serial.print("WOOD: ");
+    Serial.println(piezovals[0]);
+    Serial.println(triggerStatus[0]);
+   }
+
+}
+
+AudioOutput_t updateAudio(){
+ 
+ //return MonoOutput::from16Bit(0);
 }
 
 void loop() {
-
+  audioHook();
  // NOTE: Ideally, Nothing else should go in LOOP()
 }
