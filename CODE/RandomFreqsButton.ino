@@ -17,12 +17,12 @@
 */
 
 #include <MozziGuts.h>
-#include <Oscil.h> // oscillator template
-#include <tables/sin2048_int8.h> // sine table for oscillator
+#include <Oscil.h>                // oscillator template
+#include <tables/sin2048_int8.h>  // sine table for oscillator
 //const int buttonPin = 2;
 
 // use: Oscil <table_size, update_rate> oscilName (wavetable), look in .h file of table #included above
-Oscil <SIN2048_NUM_CELLS, AUDIO_RATE> aSin(SIN2048_DATA);
+Oscil<SIN2048_NUM_CELLS, AUDIO_RATE> aSin(SIN2048_DATA);
 
 //int buttonState = LOW;             // tracks current reading of button pin
 int buttonState;
@@ -30,54 +30,50 @@ int buttonFlag;
 int lastbuttonState;
 int i = 0;
 
-int randFreqs[20] = {65, 82, 97, 123, 130, 164, 196, 246, 261, 329, 392, 493, 523, 659, 783, 987, 1046, 1318, 1568, 1975};
+int randFreqs[20] = { 65, 82, 97, 123, 130, 164, 196, 246, 261, 329, 392, 493, 523, 659, 783, 987, 1046, 1318, 1568, 1975 };
 // use #define for CONTROL_RATE, not a constant
-#define CONTROL_RATE 64 // Hz, powers of 2 are most reliable
+#define CONTROL_RATE 64  // Hz, powers of 2 are most reliable
 
 
-void setup(){
-  
+void setup() {
+
   Serial.begin(9600);
   pinMode(2, INPUT_PULLUP);
-  startMozzi(CONTROL_RATE); // :)
-  aSin.setFreq(randFreqs[0]); // set the frequency
-
- 
+  startMozzi(CONTROL_RATE);    // :)
+  aSin.setFreq(randFreqs[i]);  // set the frequency
 }
 
 
-void updateControl(){
+void updateControl() {
   lastbuttonState = buttonState;
   buttonState = digitalRead(2);
 
-   Serial.println(buttonState);
+  Serial.println(i);
 
-  if (lastbuttonState == HIGH && buttonState == LOW ) 
-  { 
+  if (lastbuttonState == HIGH && buttonState == LOW) {
     buttonFlag = !buttonFlag;
-  } 
-  if (buttonFlag)
-  {
-       i++;
-
-    if (i > 20)
-    {
-      i = 0;
-    }
+    i++;
   }
-  
-}
-
-
-AudioOutput_t updateAudio(){
   if (buttonFlag == true) {
-    return MonoOutput::from8Bit(aSin.next()); // return an int signal centred around 0
-} else {
-  
+    //i++;
+
+ 
+  }
+  aSin.setFreq(randFreqs[i]);  // set the frequency
+  if (i > 20 ) {
+
+    i = 0;
+  }
 }
 
+
+AudioOutput_t updateAudio() {
+  if (buttonFlag == true) {
+
+    return MonoOutput::from8Bit(aSin.next());  // return an int signal centred around 0
+  }
 }
 
-void loop(){
-  audioHook(); // required here
+void loop() {
+  audioHook();  // required here
 }
