@@ -5,6 +5,11 @@
 #include <ADSR.h>
 #include <tables/sin2048_int8.h> 
 
+/*
+For Generating Random Value in array
+  float midiSequence[] = {random(59,91)}; // different notes in array
+  float midiNote = midiSequence[0]; // chose a position of the array
+ */
 
 #define CONTROL_RATE 128
 Oscil <2048, AUDIO_RATE> aSin(SIN2048_DATA);
@@ -36,4 +41,3 @@ int updateAudio(){
 void loop(){
 	audioHook();
 }
-
