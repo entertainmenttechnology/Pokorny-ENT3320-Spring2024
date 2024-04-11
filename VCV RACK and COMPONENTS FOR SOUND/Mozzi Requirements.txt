@@ -1,0 +1,26 @@
+- LFO (Low Frequency Oscillator) (assigned to a square wave because grittier sound mixes well with low frequencies)
+- Usage of the Random function which would call from an array of specific frequencies based on a musical scale
+- 2nd Oscillator at higher frequency (would be changed by lfo)
+- Envelope (Attack basically instant while release is almost midpoint so when piezo is triggered sound comes out immediately and lingers for maybe 1 second to 1.5
+
+
+
+Synthesis Type: FM through the usage of a low frequency oscillator
+
+Signal Flow: LFO ----> OSC ----> ENV ----> OUT
+
+-Between LFO and OSC usage of rand() calling from an array with multiple frequencies is necessary
+-Frequencies chosen will emulate that of a musical scale (for example like c major but need to find the frequency values of each note)
+-LFO values will then be used to modulate the 2nd Oscillator to give it a more musical sound
+-Through testing on VCV Rack (find attached in trello) a frequency of 150hz - 350hz is quite acceptable for the 2nd oscillator but can always be changed
+-Through testing square wave sounds nice with the LFO and sin wave sounds good with the 2nd Oscillator
+
+-Between OSC AND ENV through testing on VCV Rack a low attack and mid level release with a mid level decay seems to work best to simulate that of a beep or nice musical note. (Again check the vcv rack file if needed)
+
+-If capable on mozzi the modulated sound would then be output each time the peg is hit
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Array of potential frequencies to randomly play when peg is hit 
+
+[65, 82, 97, 123, 130, 164, 196, 246, 261, 329, 392, 493, 523, 659, 783, 987, 1046, 1318, 1568, 1975]
