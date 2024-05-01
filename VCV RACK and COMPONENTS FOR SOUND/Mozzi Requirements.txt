@@ -24,3 +24,5 @@ Signal Flow: LFO ----> OSC ----> ENV ----> OUT
 Array of potential frequencies to randomly play when peg is hit 
 
 [65, 82, 97, 123, 130, 164, 196, 246, 261, 329, 392, 493, 523, 659, 783, 987, 1046, 1318, 1568, 1975]
+
+[36, 
