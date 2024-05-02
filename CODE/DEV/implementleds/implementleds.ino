@@ -6,6 +6,7 @@
 #include <mozzi_midi.h>
 #include <tables/triangle_warm8192_int8.h>
 #include <tables/sin8192_int8.h>
+
 #define LED3 3
 #define LED4 4
 #define LED5 5
@@ -14,29 +15,29 @@
 #define LED8 8
 #define LED9 9
 #define LED10 10
-#define LED11 11
+#define LED11 12
+
 Oscil <8192, AUDIO_RATE> aSaw(TRIANGLE_WARM8192_DATA);
 Oscil <8192, AUDIO_RATE> aSin(SIN8192_DATA);
+
 ADSR <AUDIO_RATE, AUDIO_RATE> envelope;
+
 int attack = 100, 
     decay = 250,
     sustain = 25,
     release_ms = 500, 
     attack_level = 255, 
     decay_level = 255;
-int mod;
+
 int b = 0;
 int musicArray[20] = {36, 40, 43, 47, 48, 52, 55, 59, 60, 64, 67, 71, 72, 76, 79, 83, 84, 88, 91, 95};
-//int b = 4;
-int ledArray[8] = {3, 4, 5, 6, 7, 8, 9, 10};
-//int ledPattern1[8] = [HIGH, LOW, HIGH, LOW, HIGH, LOW, HIGH, LOW];
-const int NUM_PINS = 15;//number of pins we're using
-int piezovals[15];//values for each pin
-int piezoPins[15] = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14};//sensor pins
-int dataArray[NUM_PINS] = {};//our raw data array
-int thresHoldON = 100; //can be changed
+int NUM_PINS = 15;//number of pins we're using
+int piezovals[NUM_PINS];//values for each pin
+int piezoPins[NUM_PINS] = {A0, A1, A2, A3, A4, A15, A6, A7, A8, A9, A10, A11, A12, A13, A14};;//sensor pins
+int thresHoldON = 100;//can be changed
 bool triggerStatus[NUM_PINS] = {false};
 RollingAverage<int, 32> kAverage;
+
 //NUMBERS ARE LED LAYOUTS ON THE BOARD
 void setup() {
   pinMode(LED3, OUTPUT);//1
@@ -48,37 +49,35 @@ void setup() {
   pinMode(LED9, OUTPUT);//7
   pinMode(LED10, OUTPUT);//8
   pinMode(LED11, OUTPUT);//9
-  //analogReference(INTERNAL1V1);
+
   Serial.begin(115200);
   aSaw.setFreq(1000);
   aSin.setFreq(5);
   startMozzi();
   envelope.noteOn();
 }
+
 void updateControl() {
-  
   envelope.setADLevels(attack_level, decay_level);
   envelope.setTimes(attack, decay, sustain, release_ms);
-  // Initialize dataArray with random values for each pin
- /*for (int j = 0; j < NUM_PINS; j++) {
-  dataArray[j] = random(0, 1024); // range can change as needed
- } */
-  
-  //within our pins we will read and figure our the average in our cycle. store our data into the array
+
+   //within our pins we will read and figure our the average in our cycle. store our data into the array
   for (int i = 0; i < NUM_PINS; i++) {
     int piezoval = mozziAnalogRead(piezoPins[i]);
     piezovals[i] = piezoval;
     int avg = kAverage.next(piezoval);
-    //dataArray[i] = avg;
-    //dataArray[i] = random(0, 1024);
-  //threshold logic where once the values are increasing and hitting a "peak" we ignore anything above it.
-  if (piezovals > thresHoldON) {
-    triggerStatus[i] = true;
+
+    //threshold logic where once the values are increasing and hitting a "peak" we ignore anything above it.
+    if (piezoval > thresHoldON) {
+      triggerStatus[i] = true;
+    } else {
+      triggerStatus[i] = false;
+    }
+
+    dataArray[i] = avg;
   }
-  else {
-    triggerStatus[i] = false;
-  }
-    //switch case implements the rolling average within each pin
+
+//switch case implements the rolling average within each pin
     switch(i) {
       case 0: 
         piezovals[i] = mozziAnalogRead(piezoPins[i]);
@@ -159,202 +158,216 @@ void updateControl() {
         break;
     }
   }
-//the code below outputs a unique LED pattern and controls the oscillation/frequency randomly for every peg being hit.  
-  //PEG1
-   if (piezovals[0] > 60000000) {
-      Serial.print("3D: ");
-      Serial.println(piezovals[1]);
-      digitalWrite(LED3, HIGH);
-      Serial.println(triggerStatus[1]);
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG2
-    if (piezovals[1] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED3, HIGH);
-      
-      digitalWrite(LED4, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG3
-    if (piezovals[2] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED4, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG4
-    if (piezovals[3] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED3, HIGH);
 
-      digitalWrite(LED5, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG5
-    if (piezovals[4] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED5, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG6
-    if (piezovals[5] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED6, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG7
-    if (piezovals[6] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED4, HIGH);
+  // PEG 1
+  if (piezovals[0] > 50) {
+    Serial.print("PEG 1: ");
+    Serial.println(piezovals[0]);
 
-      digitalWrite(LED6, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG8
-    if (piezovals[7] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
+    envelope.noteOn();
+    b = random(0, 20);
 
-      digitalWrite(LED3, HIGH);
-      digitalWrite(LED4, HIGH);
-      digitalWrite(LED5, HIGH);
-      digitalWrite(LED6, HIGH);
-      digitalWrite(LED7, HIGH);
+    digitalWrite(LED3, HIGH);
+    digitalWrite(LED4, LOW);
+    digitalWrite(LED5, LOW);
+    digitalWrite(LED6, LOW);
+    digitalWrite(LED7, LOW);
+    digitalWrite(LED8, LOW);
+    digitalWrite(LED9, LOW);
+    digitalWrite(LED10, LOW);
+    digitalWrite(LED11, LOW);
+  }
 
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG9
-    if (piezovals[8] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
+  // PEG 2
+  if (piezovals[1] > 50) {
+    Serial.print("PEG 2: ");
+    Serial.println(piezovals[1]);
 
-      digitalWrite(LED7, HIGH);
-      digitalWrite(LED8, HIGH);
-      digitalWrite(LED10, HIGH);
+    digitalWrite(LED3, HIGH);
+    digitalWrite(LED4, HIGH);
+    digitalWrite(LED5, LOW);
+    digitalWrite(LED6, LOW);
+    digitalWrite(LED7, LOW);
+    digitalWrite(LED8, LOW);
+    digitalWrite(LED9, LOW);
+    digitalWrite(LED10, LOW);
+    digitalWrite(LED11, LOW);
 
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG10
-    if (piezovals[9] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }
 
-      digitalWrite(LED7, HIGH);
-      digitalWrite(LED9, HIGH);
-      digitalWrite(LED11, HIGH);
+  // PEG 3
+  if (piezovals[2] > 50) {
+    Serial.print("PEG 3: ");
+    Serial.println(piezovals[2]);
 
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG11
-    if (piezovals[10] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED10, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG12
-    if (piezovals[11] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED11, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG13
-    if (piezovals[12] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, HIGH);
+    digitalWrite(LED5, LOW);
+    digitalWrite(LED6, LOW);
+    digitalWrite(LED7, LOW);
+    digitalWrite(LED8, LOW);
+    digitalWrite(LED9, LOW);
+    digitalWrite(LED10, LOW);
+    digitalWrite(LED11, LOW);
 
-      digitalWrite(LED4, HIGH);
-      digitalWrite(LED6, HIGH);
-      digitalWrite(LED7, HIGH);
-      digitalWrite(LED8, HIGH);
-      digitalWrite(LED10, HIGH);
-      
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG14
-    if (piezovals[13] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }
 
-      digitalWrite(LED3, HIGH);
-      digitalWrite(LED4, HIGH);
-      digitalWrite(LED5, HIGH);
-      digitalWrite(LED6, HIGH);
-      digitalWrite(LED7, HIGH);
-      digitalWrite(LED8, HIGH);
-      digitalWrite(LED9, HIGH);
-      digitalWrite(LED10, HIGH);
-      digitalWrite(LED11, HIGH);
-      
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG15
-    if (piezovals[14] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
+  // PEG 9
+  if (piezovals[8] > 10) {
+    Serial.print("PEG 9: ");
+    Serial.println(piezovals[8]);
 
-      digitalWrite(LED3, HIGH);
-      digitalWrite(LED5, HIGH);
-      digitalWrite(LED7, HIGH);
-      digitalWrite(LED9, HIGH);
-      digitalWrite(LED11, HIGH);
-      
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
+    digitalWrite(LED5, LOW);
+    digitalWrite(LED6, LOW);
+    digitalWrite(LED7, HIGH);
+    digitalWrite(LED8, HIGH);
+    digitalWrite(LED9, LOW);
+    digitalWrite(LED10, HIGH);
+    digitalWrite(LED11, LOW);
+
+    Serial.println(mozziAnalogRead(A8));
+    envelope.noteOn();
+    b = random(0, 20);
+  }
+
+  // PEG 10
+  if (piezovals[9] > 10) {
+    Serial.print("PEG 10: ");
+    Serial.println(piezovals[9]);
+
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
+    digitalWrite(LED5, LOW);
+    digitalWrite(LED6, LOW);
+    digitalWrite(LED7, HIGH);
+    digitalWrite(LED8, LOW);
+    digitalWrite(LED9, HIGH);
+    digitalWrite(LED10, LOW);
+    digitalWrite(LED11, HIGH);
+
+    Serial.println(triggerStatus[9]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }
+
+  // PEG 11
+  if (piezovals[10] > 50) {
+    Serial.print("PEG 11: ");
+    Serial.println(piezovals[10]);
+
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
+    digitalWrite(LED5, LOW);
+    digitalWrite(LED6, LOW);
+    digitalWrite(LED7, LOW);
+    digitalWrite(LED8, LOW);
+    digitalWrite(LED9, LOW);
+    digitalWrite(LED10, HIGH);
+    digitalWrite(LED11, LOW);
+
+    Serial.println(triggerStatus[10]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }
+
+  // PEG 12
+  if (piezovals[11] > 50) {
+    Serial.print("PEG 12: ");
+    Serial.println(piezovals[11]);
+
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
+    digitalWrite(LED5, LOW);
+    digitalWrite(LED6, LOW);
+    digitalWrite(LED7, LOW);
+    digitalWrite(LED8, LOW);
+    digitalWrite(LED9, LOW);
+    digitalWrite(LED10, LOW);
+    digitalWrite(LED11, HIGH);
+
+    Serial.println(triggerStatus[11]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }
+
+  // PEG 13
+  if (piezovals[12] > 50) {
+    Serial.print("PEG 13: ");
+    Serial.println(piezovals[12]);
+
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, HIGH);
+    digitalWrite(LED5, LOW);
+    digitalWrite(LED6, HIGH);
+    digitalWrite(LED7, HIGH);
+    digitalWrite(LED8, HIGH);
+    digitalWrite(LED9, LOW);
+    digitalWrite(LED10, HIGH);
+    digitalWrite(LED11, LOW);
+
+    Serial.println(triggerStatus[12]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }
+
+  // PEG 14
+  if (piezovals[13] > 50) {
+    Serial.print("PEG 14: ");
+    Serial.println(piezovals[13]);
+
+    digitalWrite(LED3, HIGH);
+    digitalWrite(LED4, HIGH);
+    digitalWrite(LED5, HIGH);
+    digitalWrite(LED6, HIGH);
+    digitalWrite(LED7, HIGH);
+    digitalWrite(LED8, HIGH);
+    digitalWrite(LED9, HIGH);
+    digitalWrite(LED10, HIGH);
+    digitalWrite(LED11, HIGH);
+
+    Serial.println(triggerStatus[13]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }
+
+  // PEG 15
+  if (piezovals[14] > 50) {
+    Serial.print("PEG 15: ");
+    Serial.println(piezovals[14]);
+
+    digitalWrite(LED3, HIGH);
+    digitalWrite(LED4, LOW);
+    digitalWrite(LED5, HIGH);
+    digitalWrite(LED6, LOW);
+    digitalWrite(LED7, HIGH);
+    digitalWrite(LED8, LOW);
+    digitalWrite(LED9, HIGH);
+    digitalWrite(LED10, LOW);
+    digitalWrite(LED11, HIGH);
+
+    Serial.println(triggerStatus[14]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }
 
   if (b > 20) {
     b = 0;
   }
-    aSaw.setFreq(mtof(musicArray[b]));
-    //Serial.println(b);
-    //Serial.println(aSin.next());
-    //mod = map(aSin.next(), - 127, 127, -5, 5);
-   
+
+  aSaw.setFreq(mtof(musicArray[b]));
 }
+
 AudioOutput_t updateAudio(){
-  mod = map(aSin.next(), - 128, 128, -5, 5);
- //Serial.println(aSin.next()); 
   envelope.update();
-  return MonoOutput::from16Bit((int) ((envelope.next() * (aSaw.next()+ mod))));
+  return MonoOutput::from16Bit((int) ((envelope.next() * (aSaw.next()))));
 }
+
 void loop() {
   audioHook();
- // NOTE: Ideally, Nothing else should go in LOOP()
 }
