@@ -169,7 +169,7 @@ void updateControl() {
       envelope.noteOn();
       b = random(0, 20);
     }
-    //peg2
+    //PEG2
     if (piezovals[1] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
@@ -181,7 +181,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG3
-    if (piezovals[1] > 200) {
+    if (piezovals[2] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
       digitalWrite(LED4, HIGH);
@@ -190,7 +190,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG4
-    if (piezovals[1] > 200) {
+    if (piezovals[3] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
       digitalWrite(LED3, HIGH);
@@ -201,16 +201,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG5
-    if (piezovals[1] > 200) {
-      Serial.print("WOOD: ");
-      Serial.println(piezovals[0]);
-      digitalWrite(LED5, HIGH);
-      Serial.println(triggerStatus[0]); 
-      envelope.noteOn();
-      b = random(0, 20);
-    }
-    //PEG5
-    if (piezovals[1] > 200) {
+    if (piezovals[4] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
       digitalWrite(LED5, HIGH);
@@ -219,7 +210,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG6
-    if (piezovals[1] > 200) {
+    if (piezovals[5] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
       digitalWrite(LED6, HIGH);
@@ -228,7 +219,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG7
-    if (piezovals[1] > 200) {
+    if (piezovals[6] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
       digitalWrite(LED4, HIGH);
@@ -239,7 +230,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG8
-    if (piezovals[1] > 200) {
+    if (piezovals[7] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
 
@@ -254,7 +245,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG9
-    if (piezovals[1] > 200) {
+    if (piezovals[8] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
 
@@ -267,7 +258,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG10
-    if (piezovals[1] > 200) {
+    if (piezovals[9] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
 
@@ -280,7 +271,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG11
-    if (piezovals[1] > 200) {
+    if (piezovals[10] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
       digitalWrite(LED10, HIGH);
@@ -289,7 +280,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG12
-    if (piezovals[1] > 200) {
+    if (piezovals[11] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
       digitalWrite(LED11, HIGH);
@@ -298,7 +289,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG13
-    if (piezovals[1] > 200) {
+    if (piezovals[12] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
 
@@ -313,7 +304,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG14
-    if (piezovals[1] > 200) {
+    if (piezovals[13] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
 
@@ -332,7 +323,7 @@ void updateControl() {
       b = random(0, 20);
     }
     //PEG15
-    if (piezovals[1] > 200) {
+    if (piezovals[14] > 200) {
       Serial.print("WOOD: ");
       Serial.println(piezovals[0]);
 
