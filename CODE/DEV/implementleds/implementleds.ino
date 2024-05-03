@@ -215,6 +215,141 @@ void updateControl() {
     envelope.noteOn();
     b = random(0, 20);
   }
+  //PEG 4
+  /*if (piezovals[3] > 50) {
+    Serial.print("PEG 4: ");
+    Serial.println(piezovals[3]);
+
+    digitalWrite(LED3, HIGH); //1
+
+    digitalWrite(LED4, LOW); //2
+
+    digitalWrite(LED5, HIGH); //3
+
+    digitalWrite(LED6, LOW); //4
+
+    digitalWrite(LED7, LOW); //5
+
+    digitalWrite(LED8, LOW); //6
+
+    digitalWrite(LED9, LOW); //7
+
+    digitalWrite(LED10, LOW); //8
+
+    digitalWrite(LED11, LOW); //9
+
+    Serial.println(triggerStatus[3]); 
+    envelope.noteOn();
+    b = random(0, 20);
+  }*/
+  //PEG 5
+  /*if (piezovals[4] > 50) {
+    Serial.print("PEG 5:" );
+    Serial.println(piezovals[4]);
+
+    digitalWrite(LED3, LOW); //1
+
+    digitalWrite(LED4, LOW); //2
+
+    digitalWrite(LED5, HIGH); //3
+
+    digitalWrite(LED6, LOW); //4
+
+    digitalWrite(LED7, LOW); //5
+
+    digitalWrite(LED8, LOW); //6
+
+    digitalWrite(LED9, LOW); //7
+
+    digitalWrite(LED10, LOW); //8
+
+    digitalWrite(LED11, LOW); //9
+
+    Serial.println(triggerStatus[4]);
+    envelope.noteOn();
+    b = random(0, 20);
+  }*/
+  //PEG 6
+  /*if (piezovals[5] > 100) {
+    Serial.print("PEG 6: ");
+    Serial.println(piezovals[5]);
+
+    digitalWrite(LED3, LOW); //1
+
+    digitalWrite(LED4, LOW); //2
+
+    digitalWrite(LED5, LOW); //3
+
+    digitalWrite(LED6, HIGH); //4
+
+    digitalWrite(LED7, LOW); //5
+
+    digitalWrite(LED8, LOW); //6
+
+    digitalWrite(LED9, LOW); //7
+
+    digitalWrite(LED10, LOW); //8
+
+    digitalWrite(LED11, LOW); //9
+
+    Serial.println(triggerStatus[5]); 
+    envelope.noteOn();
+    b = random(0, 20);
+  }*/
+  //PEG 7
+  /*if (piezovals[6] > 50) {
+    Serial.print("PEG 7: ");
+    Serial.println(piezovals[6]);
+
+    digitalWrite(LED3, LOW); //1
+
+    digitalWrite(LED4, HIGH); //2
+
+    digitalWrite(LED5, LOW); //3
+
+    digitalWrite(LED6, HIGH); //4
+
+    digitalWrite(LED7, LOW); //5
+
+    digitalWrite(LED8, LOW); //6
+
+    digitalWrite(LED9, LOW); //7
+
+    digitalWrite(LED10, LOW); //8
+
+    digitalWrite(LED11, LOW); //9
+
+    Serial.println(triggerStatus[6]);
+    envelope.noteOn();
+    b = random(0, 20);
+  } */
+  //PEG 8
+  /*if (piezovals[7] > 50) {
+    Serial.print("PEG 8: ");
+    Serial.println(piezovals[7]);
+
+    digitalWrite(LED3, HIGH); //1
+
+    digitalWrite(LED4, HIGH); //2
+
+    digitalWrite(LED5, HIGH); //3
+
+    digitalWrite(LED6, HIGH); //4
+
+    digitalWrite(LED7, HIGH); //5
+
+    digitalWrite(LED8, LOW); //6
+
+    digitalWrite(LED9, LOW); //7
+
+    digitalWrite(LED10, LOW); //8
+
+    digitalWrite(LED11, LOW); //9
+
+    Serial.println(triggerStatus[7]); 
+    envelope.noteOn();
+    b = random(0, 20);
+  }*/
 
   // PEG 9
   if (piezovals[8] > 10) {
