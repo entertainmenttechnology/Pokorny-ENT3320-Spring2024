@@ -14,7 +14,7 @@
 #define LED8 8
 #define LED9 9
 #define LED10 10
-#define LED11 12
+#define LED12 12
 
 Oscil <8192, AUDIO_RATE> aSaw(TRIANGLE_WARM8192_DATA);
 Oscil <8192, AUDIO_RATE> aSin(SIN8192_DATA);
@@ -54,7 +54,7 @@ void setup() {
   pinMode(LED8, OUTPUT);//6
   pinMode(LED9, OUTPUT);//7
   pinMode(LED10, OUTPUT);//8
-  pinMode(LED11, OUTPUT);//9
+  pinMode(LED12, OUTPUT);//9
 
   //analogReference(INTERNAL1V1);
   Serial.begin(115200);
@@ -66,11 +66,27 @@ void setup() {
 }
 
 void updateControl() {
-  
+  int tttttttt = mozziAnalogRead(A1);
+  int ttttttt = mozziAnalogRead(A2);
+  int tttttt = mozziAnalogRead(A3);
+  int ttttt = mozziAnalogRead(A4);
+  int tt = mozziAnalogRead(A0);
+  int ttt = mozziAnalogRead(A6);
+  int tttt = mozziAnalogRead(A7);
+  int temp = mozziAnalogRead(A8);
+  int temp1 = mozziAnalogRead(A9);
+  int temp2 = mozziAnalogRead(A10);
+  int temp3 = mozziAnalogRead(A11);
+  int temp4 = mozziAnalogRead(A12);
+  int temp5 = mozziAnalogRead(A13);
+  int temp6 = mozziAnalogRead(A14);
+  int temp7 = mozziAnalogRead(A15);
+
+  Serial.println(temp1);
   envelope.setADLevels(attack_level, decay_level);
   envelope.setTimes(attack, decay, sustain, release_ms);
 
-  // Initialize dataArray with random values for each pin
+  //Initialize dataArray with random values for each pin
  /*for (int j = 0; j < NUM_PINS; j++) {
   dataArray[j] = random(0, 1024); // range can change as needed
  } */
@@ -81,7 +97,7 @@ void updateControl() {
     int piezoval = mozziAnalogRead(piezoPins[i]);
     piezovals[i] = piezoval;
     int avg = kAverage.next(piezoval);
-    //dataArray[i] = avg;
+    dataArray[i] = avg;
 
     //dataArray[i] = random(0, 1024);
 
@@ -177,7 +193,7 @@ void updateControl() {
     }
   }
   //PEG 1
-   if (piezovals[0] > 50) {
+   if (piezovals[0] > 10) {
       Serial.print("PEG 1: ");
       Serial.println(piezovals[0]);
 
@@ -202,10 +218,10 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
     }
     //PEG 2
-     if (piezovals[1] > 50) {
+     if (piezovals[1] > 10) {
       Serial.print("PEG 2: ");
       Serial.println(piezovals[1]);
 
@@ -225,7 +241,7 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
     
 
       Serial.println(triggerStatus[1]); 
@@ -233,7 +249,7 @@ void updateControl() {
       b = random(0, 20);
     } 
     //PEG 3
-    if (piezovals[2] > 50) {
+    if (piezovals[2] > 10) {
       Serial.print("PEG 3: ");
       Serial.println(piezovals[2]);
 
@@ -253,14 +269,14 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
       Serial.println(triggerStatus[2]);
       envelope.noteOn();
       b = random(0, 20);
     }
     //PEG 4
-     /*if (piezovals[3] > 50) {
+     if (piezovals[3] > 30) {
       Serial.print("PEG 4: ");
       Serial.println(piezovals[3]);
 
@@ -280,14 +296,14 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
       Serial.println(triggerStatus[3]); 
       envelope.noteOn();
       b = random(0, 20);
-    }*/
+    }
     //PEG 5
-    /*if (piezovals[4] > 50) 
+    if (piezovals[4] > 25) 
     {
       Serial.print("PEG 5:" );
       Serial.println(piezovals[4]);
@@ -308,14 +324,14 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
       Serial.println(triggerStatus[4]);
       envelope.noteOn();
       b = random(0, 20);
-    }*/
+    }
     //PEG 6
-     /*if (piezovals[5] > 100) {
+     if (piezovals[5] > 25) {
       Serial.print("PEG 6: ");
       Serial.println(piezovals[5]);
 
@@ -335,14 +351,14 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
       Serial.println(triggerStatus[5]); 
       envelope.noteOn();
       b = random(0, 20);
-    }*/
+    }
     //PEG 7
-    /*if (piezovals[6] > 50) {
+    if (piezovals[6] > 25) {
       Serial.print("PEG 7: ");
       Serial.println(piezovals[6]);
 
@@ -362,14 +378,14 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
       Serial.println(triggerStatus[6]);
       envelope.noteOn();
       b = random(0, 20);
-    } */
+    } 
     //PEG 8
-     /*if (piezovals[7] > 50) {
+     if (piezovals[7] > 15) {
       Serial.print("PEG 8: ");
       Serial.println(piezovals[7]);
 
@@ -389,14 +405,14 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
       Serial.println(triggerStatus[7]); 
       envelope.noteOn();
       b = random(0, 20);
-    }*/
+    }
     //PEG 9
-    if (piezovals[8] > 10) {
+    if (piezovals[8] > 20) {
       Serial.print("PEG 9: ");
       Serial.println(piezovals[8]);
 
@@ -416,14 +432,14 @@ void updateControl() {
 
       digitalWrite(LED10, HIGH); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
-      Serial.println(mozziAnalogRead(A8));
+      //Serial.println(mozziAnalogRead(A8));
       envelope.noteOn();
       b = random(0, 20);
     } 
     //PEG 10
-     if (piezovals[9] > 10) {
+     if (piezovals[9] > 5) {
       Serial.print("PEG 10: ");
       Serial.println(piezovals[9]);
 
@@ -443,14 +459,14 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, HIGH); //9
+      digitalWrite(LED12, HIGH); //9
 
       Serial.println(triggerStatus[9]); 
       envelope.noteOn();
       b = random(0, 20);
     }
     //PEG 11
-   if (piezovals[10] > 50) {
+   if (piezovals[10] > 5) {
       Serial.print("PEG 11: ");
       Serial.println(piezovals[10]);
 
@@ -470,14 +486,14 @@ void updateControl() {
 
       digitalWrite(LED10, HIGH); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
       Serial.println(triggerStatus[10]);
       envelope.noteOn();
       b = random(0, 20);
     } 
     //PEG 12
-     if (piezovals[11] > 50) {
+     if (piezovals[11] > 25) {
       Serial.print("PEG 12: ");
       Serial.println(piezovals[11]);
 
@@ -497,14 +513,14 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, HIGH); //9
+      digitalWrite(LED12, HIGH); //9
 
       Serial.println(triggerStatus[11]); 
       envelope.noteOn();
       b = random(0, 20);
     }
       //PEG 13
-    if (piezovals[12] > 50) {
+    if (piezovals[12] > 10) {
       Serial.print("PEG 13: ");
       Serial.println(piezovals[12]);
 
@@ -524,14 +540,14 @@ void updateControl() {
 
       digitalWrite(LED10, HIGH); //8
 
-      digitalWrite(LED11, LOW); //9
+      digitalWrite(LED12, LOW); //9
 
       Serial.println(triggerStatus[12]);
       envelope.noteOn();
       b = random(0, 20);
     }
     //PEG 14
-    if (piezovals[13] > 50) {
+    if (piezovals[13] > 25) {
       Serial.print("PEG 14: ");
       Serial.println(piezovals[13]);
 
@@ -551,14 +567,14 @@ void updateControl() {
 
       digitalWrite(LED10, HIGH); //8
 
-      digitalWrite(LED11, HIGH); //9
+      digitalWrite(LED12, HIGH); //9
 
       Serial.println(triggerStatus[13]); 
       envelope.noteOn();
       b = random(0, 20);
     }
       //PEG 15
-      if (piezovals[14] > 50) {
+      if (piezovals[14] > 25) {
       Serial.print("PEG 15: ");
       Serial.println(piezovals[14]);
 
@@ -578,7 +594,7 @@ void updateControl() {
 
       digitalWrite(LED10, LOW); //8
 
-      digitalWrite(LED11, HIGH); //9
+      digitalWrite(LED12, HIGH); //9
 
       Serial.println(triggerStatus[14]); 
       envelope.noteOn();
